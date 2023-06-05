@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout-welcome :: header"></header>
+	
+	<div class="card-header" style="position: absolute; top: 30%; left: 300px" >
+		
+		<div class="card-header" style="height: 50px; margin: 0px auto" align="left">e-Commerce Gapsi</div>
+		
+        <div  class="card-header" style="text-align:center">
+        <img th:src="@{/images/iconoPersona.png}" width="100px" height="100px" alt="Candidato 01" title="Candidato 01"/>
+		<div style="height: 50px; width: 400px; margin: 0px auto" th:text="${candidato}" align="center"></div>
+		<h4 class="card-title">
+					<a th:href="@{/consulta-lista}" class="btn btn-primary">Continuar</a>
+				</h4>
+		<div align="center"></div>
+		<div class="card-header" th:text="${version}" ></div>
+  
+</div>
+</div>
+
+</body>
+</html>

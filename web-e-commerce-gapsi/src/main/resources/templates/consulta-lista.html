@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<h1 th:text="${titulo}"></h1>
+		<hr/>
+			<div class="card-body">
+					<div align="right">
+						<a th:href="@{/formulario-proveedor}">
+							<img th:src="@{/images/puntoAzul.png}" width="30px" height="30px" title="Agregar"/>
+						</a>Agregar Elemento
+					</div>
+			
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Estatus</th>
+							<th>nombre</th>
+							<th>Razon Social</th>
+							<th>Direccion</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="proveedor: ${proveedores}">
+							
+							<td> 
+							<span th:if="${proveedor.estatus == 1}">
+							<img th:src="@{/images/puntoVerde.png}" width="15px" height="15px" alt="Activo" title="Activo"/>
+							</span>
+    						<span th:if="${proveedor.estatus == 2}">
+    						<img th:src="@{/images/puntoRojo.png}" width="15px" height="15px" alt="Inactivo" title="Inactivo"/>
+    						</span>
+    						<span th:if="${proveedor.estatus == 3}">
+    						<img th:src="@{/images/puntoNaranja.png}" width="15px" height="15px" alt="Pendiente" title="Pendiente"/>
+    						</span>
+							</td>
+							<td th:text="${proveedor.nombre}"></td>
+							<td th:text="${proveedor.razonsocial}"></td>
+							<td th:text="${proveedor.direccion}"></td>
+							<td>
+							 	<a th:href="@{/consulta-proveedor/} + ${proveedor.id}">
+									<img th:src="@{/images/iconoConsulta.png}" width="30px" height="20px" alt="Consulta" title="Consulta"/>
+							    </a>
+							    &nbsp;&nbsp;&nbsp;
+							 	<a th:href="@{/eliminar-proveedor/} + ${proveedor.id}" onclick="return confirm('Seguro de eliminar el Proveedor?');">
+									<img th:src="@{/images/iconoCesto.png}" width="20px" height="20px" alt="Eliminar" title="Eliminar"/>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+				<nav th:replace="paginator-nav :: paginator"></nav>
+		</div>
+		
+	</div>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
